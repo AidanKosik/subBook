@@ -1,10 +1,10 @@
 package com.example.aidankosik.a301a1;
 
 
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,7 +28,6 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -51,6 +49,7 @@ public class Home extends AppCompatActivity {
         // Find and set the toolbar
         toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Delete Mode: Off");
 
         ListView listView = findViewById(R.id.subsList);
         saver.load(this, subList);
@@ -141,7 +140,7 @@ public class Home extends AppCompatActivity {
         final View dialog_view = inflater.inflate(R.layout.dialog_layout, null);
 
         // Create the alert dialog to enter information
-        AlertDialog.Builder dialog = new AlertDialog.Builder(Home.this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(Home.this)
                 .setView(dialog_view)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
@@ -187,6 +186,7 @@ public class Home extends AppCompatActivity {
                     }
                 })
                 .setTitle("Add Subscription");
+        AlertDialog dialog = builder.create();
         dialog.show();
     }
 
@@ -247,12 +247,14 @@ public class Home extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             deleteMode = true;
+                            toolbar.setTitle("Delete Mode: On");
                         }
                     })
                     .setNegativeButton("Off", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             deleteMode = false;
+                            toolbar.setTitle("Delete Mode: Off");
                         }
                     })
                     .setTitle("Delete mode")
