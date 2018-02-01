@@ -1,4 +1,4 @@
-package com.example.aidankosik.a301a1;
+package com.example.aidankosik.subbook;
 
 
 import android.content.DialogInterface;
@@ -160,21 +160,38 @@ public class Home extends AppCompatActivity {
                         // -----------------------------------------------
 
                         if (!title.isEmpty() && !date.isEmpty() && !tPrice.isEmpty()) {
-                            if(parseDate(date)) {
-                                double price = Double.parseDouble(tPrice);
-                                // If the comment is empty, give it the specified empty comment string
-                                if (comment.isEmpty()) {
-                                    comment = "%$CommentEmpty$%";
-                                }
+                            double price = Double.parseDouble(tPrice);
 
-                                Subscription e = new Subscription(title, date, price, comment);
-                                addSub(e);
-                            }
-                            else {
+                            // Do all the checks for the fields.
+                            // Make sure the date is in the right format
+                            if (!parseDate(date)) {
                                 Toast.makeText(getBaseContext(), "The date format should be yyyy/MM/dd.", Toast.LENGTH_LONG).show();
+                                return;
                             }
-                        }
-                        else {
+                            // Make sure the price is non-negative, make a toast popup if it is negative and return without adding.
+                            if (price < 0) {
+                                Toast.makeText(getBaseContext(), "The price cannot be negative.", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            // Make sure the title is <= 20 characters
+                            if (title.length() > 20) {
+                                Toast.makeText(getBaseContext(), "Title can be max 20 characters.", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+
+                            // If the comment is empty, give it the specified empty comment string
+                            if (comment.isEmpty()) {
+                                comment = "%$CommentEmpty$%";
+                            } else {
+                                if (comment.length() > 30) {
+                                    Toast.makeText(getBaseContext(), "Comment can be max 30 characters.", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                            }
+
+                            Subscription e = new Subscription(title, date, price, comment);
+                            addSub(e);
+                        } else {
                             Toast.makeText(getBaseContext(), "Title, Price and Date need entries.", Toast.LENGTH_LONG).show();
                         }
                     }

@@ -1,5 +1,6 @@
-package com.example.aidankosik.a301a1;
+package com.example.aidankosik.subbook;
 
+import android.annotation.SuppressLint;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,6 +23,6 @@ public class Totals {
     // Sets the TextView that displays the total price
     public void setTotal(TextView textView, ArrayList<Subscription> subList) {
         double tp = getTotal(subList);
-        textView.setText("$" + Double.toString(tp));
+        textView.setText("$" + String.format("%.2f", tp));
     }
 }

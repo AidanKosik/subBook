@@ -1,4 +1,4 @@
-package com.example.aidankosik.a301a1;
+package com.example.aidankosik.subbook;
 
 import java.io.Serializable;
 
@@ -59,15 +59,7 @@ public class Subscription implements Serializable {
 
     @Override
     public String toString() {
-        return title + ": $" + String.format("%.2f",price) + " pays on " + date;
-    }
-
-    public String showComment() {
-        if (comment == "") {
-            return "No comment entered.";
-        }
-
-        return comment;
+        return title + ": $" + String.format("%.2f",price) + " Started:  " + date;
     }
 
     public String toWrite() {
