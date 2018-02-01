@@ -59,7 +59,7 @@ public class Subscription implements Serializable {
 
     @Override
     public String toString() {
-        return title;
+        return title + ": $" + price + " pays on " + date;
     }
 
     public String showComment() {

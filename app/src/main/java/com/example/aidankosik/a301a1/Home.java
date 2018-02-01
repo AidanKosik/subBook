@@ -39,6 +39,7 @@ public class Home extends AppCompatActivity {
     private FileSaver saver = new FileSaver();
     private Totals totaler = new Totals();
     private Toolbar toolbar;
+    private boolean deleteMode = false;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -66,6 +67,16 @@ public class Home extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
+
+                if (deleteMode) {
+                    final Subscription item = (Subscription) parent.getItemAtPosition(position);
+                    subList.remove(item);adapter.notifyDataSetChanged();
+                    totaler.setTotal((TextView) findViewById(R.id.totalPrice), subList);
+                    deleteMode = false;
+                    saver.save(getBaseContext(), subList);
+                    return;
+                }
+
                 LayoutInflater inflater = getLayoutInflater();
                 final View dialog_view = inflater.inflate(R.layout.dialog_layout, null);
                 final EditText eTitle = dialog_view.findViewById(R.id.d_title);
@@ -109,12 +120,10 @@ public class Home extends AppCompatActivity {
 
                             }
                         })
-                        .setNegativeButton("Delete Subscription", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Cancel Changes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                subList.remove(item);
-                                adapter.notifyDataSetChanged();
-                                totaler.setTotal((TextView) findViewById(R.id.totalPrice), subList);
+                                dialog.dismiss();
 
                             }
                         });
@@ -164,7 +173,7 @@ public class Home extends AppCompatActivity {
                                 addSub(e);
                             }
                             else {
-                                Toast.makeText(getBaseContext(), "The date format should be dd/MM/yyyy.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getBaseContext(), "The date format should be yyyy/MM/dd.", Toast.LENGTH_LONG).show();
                             }
                         }
                         else {
@@ -185,7 +194,7 @@ public class Home extends AppCompatActivity {
     private boolean parseDate(String string_date) {
         Date date = null;
         try {
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             date = format.parse(string_date);
             if (!string_date.equals(format.format(date))) {
                 date = null;
@@ -233,14 +242,17 @@ public class Home extends AppCompatActivity {
             return true;
         }
         else if (item.getItemId() == R.id.delete) {
+            deleteMode = true;
             return true;
         }
         else if (item.getItemId() == R.id.reset_app) {
+            subList.clear();
             return true;
         } else {
             return false;
         }
     }
+
 
 
 }
