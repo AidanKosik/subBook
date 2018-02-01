@@ -19,7 +19,6 @@
         android:id="@+id/reset_app"
         android:icon="@android:drawable/ic_notification_clear_all"
         android:title="Clear"
-        android:enabled="false"
         app:showAsAction="ifRoom"></item>
 
 </menu>

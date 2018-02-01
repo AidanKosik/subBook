@@ -72,7 +72,6 @@ public class Home extends AppCompatActivity {
                     final Subscription item = (Subscription) parent.getItemAtPosition(position);
                     subList.remove(item);adapter.notifyDataSetChanged();
                     totaler.setTotal((TextView) findViewById(R.id.totalPrice), subList);
-                    deleteMode = false;
                     saver.save(getBaseContext(), subList);
                     return;
                 }
@@ -196,6 +195,7 @@ public class Home extends AppCompatActivity {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             date = format.parse(string_date);
+            Log.i("DATE", date.toString());
             if (!string_date.equals(format.format(date))) {
                 date = null;
             }
@@ -242,11 +242,49 @@ public class Home extends AppCompatActivity {
             return true;
         }
         else if (item.getItemId() == R.id.delete) {
-            deleteMode = true;
+            AlertDialog.Builder builder = new AlertDialog.Builder(Home.this)
+                    .setPositiveButton("On", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteMode = true;
+                        }
+                    })
+                    .setNegativeButton("Off", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteMode = false;
+                        }
+                    })
+                    .setTitle("Delete mode")
+                    .setMessage("Would you like to turn delete mode on or off?");
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
             return true;
         }
         else if (item.getItemId() == R.id.reset_app) {
-            subList.clear();
+            AlertDialog.Builder builder = new AlertDialog.Builder(Home.this)
+                    .setMessage("Would you like to clear all submissions?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            subList.clear();
+                            saver.save(getBaseContext(), subList);
+                            adapter.notifyDataSetChanged();
+                            totaler.setTotal((TextView) findViewById(R.id.totalPrice), subList);
+
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .setTitle("Clear All");
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
             return true;
         } else {
             return false;
