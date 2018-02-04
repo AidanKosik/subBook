@@ -31,6 +31,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
+/**
+ * The main activity of the app. This is where the user can look
+ * at and select their subscription. It displays the total
+ * cost of the subscriptions at the top of the screen.
+ * It also houses all of the alert dialogs used when adding
+ * and deleting subscriptions.
+ */
 public class Home extends AppCompatActivity {
     private ArrayList<Subscription> subList = new ArrayList<>();
     private ArrayAdapter adapter;
@@ -39,6 +46,12 @@ public class Home extends AppCompatActivity {
     private Toolbar toolbar;
     private boolean deleteMode = false;
 
+    /**
+     * This is the setup for when the app is created.
+     * The ListView, Toolbar, ArrayAdapter and the ListView's
+     * onClickListener are all setup in this function.
+     * @param savedInstanceState a saved instance if the app was running
+     */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,9 +143,11 @@ public class Home extends AppCompatActivity {
 
     }
 
-    // The onClick function for the add button.
-    // Opens an alert dialog using the dialog_layout.
-    // The add button will submit the given information as a subscription object adding it to the list view
+    /**
+     * This function sets up what to do when the add button is clicked.
+     * The alert dialog that is opened when add is clicked is created
+     * and set up in this function as well.
+     */
     public void onClickAdd() {
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialog_view = inflater.inflate(R.layout.dialog_layout, null);
@@ -205,6 +220,16 @@ public class Home extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * This function takes a string that is the date for
+     * a subscription. It then parses this date and ensures
+     * that it is in the right format.
+     * Credit to: MadProgrammer -
+     * https://stackoverflow.com/questions/20231539/
+     * java-check-the-date-format-of-current-string-is-according-to-required-format-or
+     * @param string_date the date entered
+     * @return boolean whether the date is formatted right
+     */
     private boolean parseDate(String string_date) {
         Date date = null;
         try {
@@ -220,10 +245,11 @@ public class Home extends AppCompatActivity {
     }
 
 
-    // This function adds the given subscription object to the list of subscriptions and then
-    // it updates the listView to show new subscription.
-    // Parameters:
-        // s - a subscription item to be added
+    /**
+     * Adds a subscription to the subscription array and updates
+     * the adapter and total price of the subscriptions.
+      * @param s the subscription to be added
+     */
     public void addSub(Subscription s) {
         subList.add(s);
         adapter.notifyDataSetChanged();
@@ -231,12 +257,22 @@ public class Home extends AppCompatActivity {
     }
 
 
+    /**
+     * When the app is closed, this makes sure that
+     * the subscriptions are saved to the text file.
+     */
     @Override
     protected void onStop() {
         super.onStop();
         saver.save(this, subList);
     }
 
+    /**
+     * When the menu bar is selected this inflates the
+     * correct layout for the menu.
+     * @param menu the menu being selected
+     * @return the super classes constructor for this.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -246,15 +282,23 @@ public class Home extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * Coordinates what to do when an item on the Toolbar
+     * is selected. The options are delete, add, and clear.
+     * @param item the menu item that was selected
+     * @return boolean true if a valid item was selected.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.add_item) {
-            // If the add item button is selected
+            // If the add item button is selected call onClickAdd
             onClickAdd();
             return true;
         }
         else if (item.getItemId() == R.id.delete) {
+            // When the delete button is selected create a warning
+            // to see if the user wants to turn delete mode on or off.
             AlertDialog.Builder builder = new AlertDialog.Builder(Home.this)
                     .setPositiveButton("On", new DialogInterface.OnClickListener() {
                         @Override
@@ -278,6 +322,8 @@ public class Home extends AppCompatActivity {
             return true;
         }
         else if (item.getItemId() == R.id.reset_app) {
+            // When the reset button is chosen, create a warning to ensure this is
+            // what the user wants to do.
             AlertDialog.Builder builder = new AlertDialog.Builder(Home.this)
                     .setMessage("Would you like to clear all submissions?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
