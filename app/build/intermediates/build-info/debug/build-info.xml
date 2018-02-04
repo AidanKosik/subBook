@@ -3,10 +3,10 @@
     abi="x86"
     api-level="27"
     build-mode="FULL"
-    density="420dpi"
+    density="560dpi"
     format="10"
     plugin-version="3.0.1"
-    timestamp="1517774224096"
+    timestamp="1517774619353"
     token="1155820340580097869"
     verifier="FULL_BUILD_REQUESTED" >
 
@@ -23,6 +23,9 @@
         name="verifier"
         duration="0" />
 
+    <artifact
+        location="/Users/aidankosik/Documents/School/cmput301/A1/Test/app/build/outputs/apk/debug/app-debug.apk"
+        type="SPLIT_MAIN" />
     <artifact
         location="/Users/aidankosik/Documents/School/cmput301/A2/subBook/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
         type="SPLIT" />
@@ -89,14 +92,14 @@
     <artifact
         location="/Users/aidankosik/Documents/School/cmput301/A1/Test/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
         type="SPLIT" />
-    <artifact
-        location="/Users/aidankosik/Documents/School/cmput301/A1/Test/app/build/outputs/apk/debug/app-debug.apk"
-        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1517774224096"
+        timestamp="1517774619353"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/Users/aidankosik/Documents/School/cmput301/A1/Test/app/build/outputs/apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
         <artifact
             location="/Users/aidankosik/Documents/School/cmput301/A2/subBook/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
             type="SPLIT" />
@@ -163,9 +166,6 @@
         <artifact
             location="/Users/aidankosik/Documents/School/cmput301/A1/Test/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
             type="SPLIT" />
-        <artifact
-            location="/Users/aidankosik/Documents/School/cmput301/A1/Test/app/build/outputs/apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>
