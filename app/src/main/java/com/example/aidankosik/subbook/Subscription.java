@@ -1,13 +1,14 @@
 package com.example.aidankosik.subbook;
 
+import android.annotation.SuppressLint;
+
 import java.io.Serializable;
 
 /**
  * Created by aidankosik on 2018-01-17.
  */
 
-public class Subscription implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Subscription {
     private String title;
     private String date;
     private double price;
@@ -59,7 +60,7 @@ public class Subscription implements Serializable {
 
     @Override
     public String toString() {
-        return title + ": $" + String.format("%.2f",price) + " Started:  " + date;
+        return title + ": $" + String.format("%.2f", price) + " Started:  " + date;
     }
 
     public String toWrite() {

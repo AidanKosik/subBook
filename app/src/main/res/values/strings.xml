@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">subBook</string>
+    <string name="app_name">akosik-subBook</string>
     <string name="add_button">Add</string>
     <string name="delete_button">Delete</string>
-    <string name="title">Title</string>
-    <string name="date">Date</string>
+    <string name="title">Title (up to 20 characters)</string>
+    <string name="date">Date (YYYY-MM-DD)</string>
     <string name="price">Price</string>
-    <string name="comments">Comments</string>
+    <string name="comments">Comments (up to 30 characters)</string>
     <string name="dialog_create_subscription">Create Subscription?</string>
     <string name="dialog_add">Add</string>
     <string name="dialog_cancel">Cancel</string>

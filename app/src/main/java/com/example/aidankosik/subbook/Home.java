@@ -90,10 +90,8 @@ public class Home extends AppCompatActivity {
 
                 // If the comment is empty, set it as "" rather than our tag
                 if (item.getComment().equals("%$CommentEmpty$%")) {
-                    Log.i("EQUALS", "E1");
                     eComment.setText("");
                 } else {
-                    Log.i("EQUALS", "E2");
                     eComment.setText(item.getComment());
                 }
 
@@ -165,7 +163,7 @@ public class Home extends AppCompatActivity {
                             // Do all the checks for the fields.
                             // Make sure the date is in the right format
                             if (!parseDate(date)) {
-                                Toast.makeText(getBaseContext(), "The date format should be yyyy/MM/dd.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getBaseContext(), "The date format should be yyyy-MM-dd.", Toast.LENGTH_LONG).show();
                                 return;
                             }
                             // Make sure the price is non-negative, make a toast popup if it is negative and return without adding.
@@ -210,9 +208,8 @@ public class Home extends AppCompatActivity {
     private boolean parseDate(String string_date) {
         Date date = null;
         try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             date = format.parse(string_date);
-            Log.i("DATE", date.toString());
             if (!string_date.equals(format.format(date))) {
                 date = null;
             }
@@ -238,7 +235,6 @@ public class Home extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         saver.save(this, subList);
-        Log.i("SAVE", "Saving on stop!");
     }
 
     @Override

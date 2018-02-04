@@ -38,7 +38,6 @@ public class FileSaver {
     // Parameters
     // context -> this is a context type
     public void load(Context context, ArrayList<Subscription> subList) {
-        Log.i("LOAD", "Loading...");
 
         try {
             InputStream inputStream = context.openFileInput("config.txt");
@@ -51,7 +50,6 @@ public class FileSaver {
                 while ( (receiveString = bufferedReader.readLine()) != null ) {
                     String words[] = receiveString.split(",");
                     subList.add(new Subscription(words[0], words[1], Double.parseDouble(words[2]), words[3]));
-                    Log.i("REC", words[0] + words[1] + words[2] + words[3]);
                 }
 
                 inputStream.close();
