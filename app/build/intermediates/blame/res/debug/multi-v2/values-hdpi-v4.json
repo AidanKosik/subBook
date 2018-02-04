@@ -17,6 +17,22 @@
             ]
         },
         {
+            "outputFile": "/Users/aidankosik/Documents/School/cmput301/A1/final/subBook/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/Users/aidankosik/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/f46b5f44483529c85aa28c17920cb207/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/Users/aidankosik/Documents/School/cmput301/A2/subBook/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {

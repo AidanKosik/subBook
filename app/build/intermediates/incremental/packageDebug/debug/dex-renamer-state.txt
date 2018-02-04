@@ -1,4 +1,4 @@
-#Sun Feb 04 13:07:18 MST 2018
-base.0=/Users/aidankosik/Documents/School/cmput301/A1/Test/app/build/intermediates/transforms/dexMerger/debug/56
+#Sun Feb 04 13:09:07 MST 2018
+base.0=/Users/aidankosik/Documents/School/cmput301/A1/final/subBook/app/build/intermediates/transforms/dexMerger/debug/56
 path.0=classes.dex
 renamed.0=classes.dex
