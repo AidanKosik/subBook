@@ -15,12 +15,19 @@ import java.util.ArrayList;
  * Created by aidankosik on 2018-01-18.
  */
 
+/**
+ * This is the file saving class. This class to an array of subscriptions
+ * and saves them to a text file in internal storage. This allows
+ * persistence for the app so subscriptions are saved.
+ */
 public class FileSaver {
 
 
-    // Save the subList array to internal storage, allowing for persistent data.
-    // Parameters
-    // Context - this is a context type object
+    /**
+     * This function saves the Array of subscriptions to the text file.
+     * @param context the context of the activity
+     * @param subList the array of subscriptions
+     */
     public void save(Context context, ArrayList<Subscription> subList) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
@@ -34,9 +41,12 @@ public class FileSaver {
         }
     }
 
-    // Load the subscription array from the save file.
-    // Parameters
-    // context -> this is a context type
+    /**
+     * Loads the saved text file and inserts the subscription
+     * items into the subList Array.
+     * @param context the context of the activity
+     * @param subList the Array of subscriptions
+     */
     public void load(Context context, ArrayList<Subscription> subList) {
 
         try {
